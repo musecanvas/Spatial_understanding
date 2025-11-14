@@ -61,9 +61,7 @@ const localImageFiles = [
   'example-images/baklava.jpg',
 ];
 
-export const imageOptions: string[] = localImageFiles.map((file) =>
-  new URL(file, import.meta.env.BASE_URL).toString(),
-);
+export const imageOptions: string[] = localImageFiles.map((file) => `/${file}`);
 
 export const GEMINI_API_KEY = import.meta.env.GEMINI_API_KEY;
 
