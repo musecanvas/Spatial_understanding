@@ -65,6 +65,8 @@ export const imageOptions: string[] = localImageFiles.map((file) =>
   new URL(file, import.meta.env.BASE_URL).toString(),
 );
 
+export const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+
 export const lineOptions = {
   size: 8,
   thinning: 0,

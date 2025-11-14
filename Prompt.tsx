@@ -40,9 +40,9 @@ import {
 import {lineOptions} from './consts';
 import {DetectTypes} from './Types';
 import {getSvgPathFromStroke, loadImage} from './utils';
+import {GEMINI_API_KEY} from './consts';
 
-// Fix: Per coding guidelines, the API key must be read from process.env.API_KEY.
-const ai = new GoogleGenAI({apiKey: process.env.API_KEY});
+const ai = new GoogleGenAI({apiKey: GEMINI_API_KEY});
 export function Prompt() {
   const [temperature, setTemperature] = useAtom(TemperatureAtom);
   const [, setBoundingBoxes2D] = useAtom(BoundingBoxes2DAtom);
@@ -164,7 +164,7 @@ export function Prompt() {
       setHoverEntered(false);
       const config: {
         temperature: number;
-        thinkingConfig?: {thinkingBudget: number};
+        thinkingConfig?: {includeThoughts: boolean};
       } = {
         temperature,
       };
@@ -175,7 +175,7 @@ export function Prompt() {
       } else {
         // Disable thinking for 2.5 Flash, as recommended for spatial
         // understanding tasks.
-        config['thinkingConfig'] = {thinkingBudget: 0};
+        config['thinkingConfig'] = {includeThoughts: false};
       }
 
       let textPromptToSend = '';
